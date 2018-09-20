@@ -1,0 +1,62 @@
+import java.io.*;
+class Encryption
+{
+public static void main (String argsd[])throws IOException
+{
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+int nos;
+System.out.println("ENTER NUMBER OF SENTENCES YOU WANT TO ENTER");
+nos=Integer.parseInt(br.readLine());
+if(nos<1||nos>=10)
+System.out.println("INVALID ENTRY");
+else
+{
+int i,j,p,l;
+String s[]=new String[nos];
+System.out.println("ENTER " +nos +" SENTENCES : ");
+for(i=0;i<nos;i++)
+s[i]=(br.readLine()).toUpperCase();
+for(i=0;i<nos;i++)
+{
+String t;
+s[i]=" "+s[i];
+l=s[i].length();
+if(i%2==0)
+{
+t="";
+for(j=0;j<l;j++)
+{
+int ch=s[i].charAt(j);
+if(ch!=32 && ch!='.')
+{
+ch=ch+2;
+if(ch>90)
+ch=ch-26;
+}
+t=t+(char)ch;
+}
+s[i]=t.trim();
+}
+else
+{
+t="";
+p=l-1;
+for(j=l-1;j>=0;j--)
+{
+char ch=s[i].charAt(j);
+if(ch==' ')
+{
+t=t+s[i].substring (j+1,p+1)+" ";
+p=j;
+}
+}
+t=t+".";
+s[i]=t;
+}
+}
+System.out.println("OUTPUT IS");
+for(i=0;i<nos;i++)
+System.out.println(s[i]);
+}
+}
+}
