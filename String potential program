@@ -1,0 +1,86 @@
+import java.io.*;
+class String_Potential
+{
+int potent(String s)
+{
+int i,l=s.length(),sum=0;
+char c;
+for(i=0;i<l;i++)
+{
+c=s.charAt(i);
+sum+=(int)c-64;
+}
+return sum;
+}
+public static void main(String args[])throws IOException
+{
+BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+System.out.println("Enter a String:");
+String str=in.readLine();
+str=str.toUpperCase();
+int i,l=str.length(),c=0;
+char c2=str.charAt(l-1);
+char ch;
+for(i=0;i<l;i++)
+{
+ch=str.charAt(i);
+if(ch==' ')
+c++;
+}
+System.out.println(c);
+int s[]=new int[c];
+String st[]=new String[c];
+String_Potential p1=new String_Potential();
+if(str.endsWith("!")||str.endsWith(",")||str.endsWith(".")||str.endsWith("?"))
+{
+int j,p,q=0,min,t;
+char c1;
+String t1,abc="";
+for(i=0;i<l-1;i++)
+{
+ch=str.charAt(i);
+abc="";
+if(ch==' ')
+{
+for(j=i-1;j>=0;j--)
+{
+c1=str.charAt(j);
+if(c1==' ')
+break;
+else
+abc=c1+abc;
+}
+p=p1.potent(abc);
+s[q]=p;
+st[q]=abc;
+q++;
+}
+}
+for(i=0;i<c;i++)
+{
+System.out.println(st[i]+"="+s[i]);
+}
+for(i=0;i<c;i++)
+{
+min=i;
+for(j=i+1;j<c;j++)
+{
+if(s[min]>s[j])
+min=j;
+}
+t=s[min];
+s[min]=s[i];
+s[i]=t;
+t1=st[min];
+st[min]=st[i];
+st[i]=t1;
+}
+for(i=0;i<c;i++)
+System.out.print(st[i]+" ");
+System.out.print(c2);
+}
+else 
+System.out.println("wrong string");
+}
+}
+
