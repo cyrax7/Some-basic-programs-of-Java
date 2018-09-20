@@ -1,0 +1,51 @@
+import java.util.*;
+class ceser_cyfer 
+{ 
+ public static void main(String args[])
+ {
+  Scanner sc=new Scanner(System.in);
+  int l,i,j,k;
+  String str;
+  String str2="";
+  char ch;
+  System.out.println("Enter a Strig:");
+  str=sc.nextLine();
+  l=str.length();
+  if((l<3)&&(l>100))
+  {
+   System.out.println("Invalid Length");
+  }
+  else
+  {
+   for(i=0;i<l;i++)
+   {
+    ch=str.charAt(i);
+    if((ch>='A')&&(ch<='Z'))
+    {
+     j=(int)ch+13;
+     if(j>90)
+     {
+      k=j-90;
+      j=64+k;
+     }
+    }
+    if((ch>='a')&&(ch<='a'))
+    {
+     j=(int)ch+13;
+     if(j>122)
+     {
+      k=j-122;
+      j=96+k;
+     }
+    }
+    else
+    {
+     j=(int)ch;
+    }
+    str2=str2+(char)j;
+  }
+  System.out.println(str2);
+ }
+}
+}
+  
