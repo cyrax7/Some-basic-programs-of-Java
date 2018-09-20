@@ -1,0 +1,72 @@
+THIS PROGRAM IS USED TO CHECK WETHER A NUMBER IS A MAGIC COMPOSITE NUMBER OR NOT...
+import java.io.*;
+class Magic_Composite
+{  
+    boolean isComposite(int n) //function to check if number is composite
+    {
+        int c=0;
+        for(int i=1;i<=n;i++)
+        {
+            if(n%i==0)
+                c++;
+        }
+        if(c>2)
+            return true;
+        else
+            return false;
+    }
+ 
+    int sumDig(int n) //function to calculate sum of digits
+    {
+        int s = 0;
+        while(n>0)
+        {
+            s = s + n%10;
+            n = n/10;
+        }
+        return s;
+    }
+     
+    boolean isMagic(int n) //function to check if the number is magic number
+    {
+        int a = sumDig(n);
+        while(a>9)
+        {
+            a = sumDig(a); 
+        }
+                     
+        if(a == 1)
+            return true;
+        else
+            return false;
+    }
+ 
+    public static void main(String args[])throws IOException
+    {
+        Magic_Composite ob = new Magic_Composite();
+        BufferedReader br=new BufferedReader (new InputStreamReader(System.in));
+         
+        System.out.print("Enter the lower limit m ");
+        int m=Integer.parseInt(br.readLine());
+        System.out.print("Enter the upper limit n (n>m) ");
+        int n=Integer.parseInt(br.readLine());
+         
+        int c=0;
+        if (m<n)
+        {
+            System.out.println("The Composite Magic Integers in this range are: ");
+            for(int i=m; i<=n; i++)
+            {
+                if(ob.isComposite(i)==true && ob.isMagic(i)==true)
+                {
+                    System.out.println("    " + i);
+                    c++; //counting frequency of required numbers
+                }
+            }
+            System.out.println("The frequency of Composite Magic Integers is : "+c);
+        }
+ 
+        else
+            System.out.println("Invalid Input");
+    }
+}
